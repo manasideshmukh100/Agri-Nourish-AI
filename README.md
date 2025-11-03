@@ -41,7 +41,7 @@ The goal is to use machine learning and smart analytics to improve yields, optim
 ---
 
 ### 📁 Repository Structure
-Agri-Nourish-AI/
+##Agri-Nourish-AI/
 │
 ├── App.tsx # Entry point for UI
 ├── README.md # You’re editing this file
