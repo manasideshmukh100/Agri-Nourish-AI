@@ -403,3 +403,334 @@ import React, { useState, useCallback } from 'react';
 
 # Make all files writable (remove read-only attribute)
 Get-ChildItem -Recurse | ForEach-Object { attrib -R $_.FullName }
+// ...existing code...
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './components/LanguageSelector';
+// ...existing code...
+
+function App() {
+  const { t } = useTranslation();
+
+  // ...existing code...
+
+  return (
+    <div className="min-h-screen bg-stone-50 p-6">
+      <header className="max-w-3xl mx-auto mb-6 flex items-center gap-3">
+        <LeafIcon className="w-10 h-10 text-green-600" />
+        <h1 className="text-2xl font-semibold">{t('app.title')}</h1>
+        <LanguageSelector />
+      </header>
+
+      <main className="max-w-3xl mx-auto space-y-6">
+        <FertilizerForm formData={formData} onFormChange={handleFormChange} onSubmit={handleSubmit} isLoading={isLoading} />
+        <RecommendationDisplay recommendations={recommendations} isLoading={isLoading} error={error} />
+      </main>
+    </div>
+  );
+}
+// ...existing code...
+// ...existing code...
+import { useTranslation } from 'react-i18next';
+// ...existing code...
+
+const FertilizerForm: React.FC<FertilizerFormProps> = ({ formData, onFormChange, onSubmit, isLoading }) => {
+    const { t } = useTranslation();
+
+    return (
+        <form onSubmit={onSubmit} className="bg-white p-6 rounded-xl shadow-sm border">
+            <div className="grid grid-cols-1 gap-4">
+                <div>
+                    <label className="block text-sm font-medium">{t('form.cropType')}</label>
+                    <input name="cropType" value={formData.cropType} onChange={onFormChange} className="mt-1 block w-full" placeholder={t('form.cropPlaceholder')} />
+                </div>
+
+                <div>
+                    <label className="block text-sm font-medium">{t('form.soilQuality')}</label>
+                    <select name="soilQuality" value={formData.soilQuality} onChange={onFormChange} className="mt-1 block w-full">
+                        <option>Poor</option>
+                        <option>Average</option>
+                        <option>Good</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label className="block text-sm font-medium">{t('form.climate')}</label>
+                    <select name="climate" value={formData.climate} onChange={onFormChange} className="mt-1 block w-full">
+                        <option>Tropical</option>
+                        <option>Dry</option>
+                        <option>Temperate</option>
+                        <option>Continental</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label className="block text-sm font-medium">{t('form.growthStage')}</label>
+                    <select name="growthStage" value={formData.growthStage} onChange={onFormChange} className="mt-1 block w-full">
+                        <option>Seedling</option>
+                        <option>Vegetative</option>
+                        <option>Flowering</option>
+                        <option>Fruiting</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label className="block text-sm font-medium">{t('form.nutrientDeficiencies')}</label>
+                    <input name="nutrientDeficiencies" value={formData.nutrientDeficiencies} onChange={onFormChange} className="mt-1 block w-full" placeholder={t('form.nutrientDeficiencies')} />
+                </div>
+
+                <div className="text-right">
+                    <button type="submit" disabled={isLoading} className="px-4 py-2 bg-green-600 text-white rounded">
+                        {isLoading ? t('form.loading') : t('form.submit')}
+                    </button>
+                </div>
+            </div>
+        </form>
+    );
+};
+// ...existing code...
+// ...existing code...
+import { useTranslation } from 'react-i18next';
+// ...existing code...
+
+const RecommendationCard: React.FC<{ rec: FertilizerRecommendation }> = ({ rec }) => {
+    const { t } = useTranslation();
+    return (
+      <div className="bg-white rounded-xl shadow-md p-4 border">
+          <h3 className="font-semibold">{rec.fertilizerName}</h3>
+          <p className="text-sm"><strong>{t('recommendation.method')}:</strong> {rec.applicationMethod}</p>
+          <p className="text-sm"><strong>{t('recommendation.why')}:</strong> {rec.reasoning}</p>
+          <p className="text-sm text-red-600"><strong>{t('recommendation.precautions')}:</strong> {rec.precautions}</p>
+      </div>
+    );
+};
+
+const RecommendationDisplay: React.FC<RecommendationDisplayProps> = ({ recommendations, isLoading, error }) => {
+    const { t } = useTranslation();
+
+    if (isLoading) {
+        return <div className="space-y-4"><div className="h-20 bg-white rounded animate-pulse" /></div>;
+    }
+
+    if (error) {
+        return <div className="text-red-600">{error || t('error.generic')}</div>;
+    }
+
+    if (!recommendations || recommendations.length === 0) {
+        return <div className="text-stone-600">{t('recommendation.noRecommendations')}</div>;
+    }
+
+    return (
+        <div className="grid gap-4">
+            {recommendations.map((r, i) => <RecommendationCard key={i} rec={r} />)}
+        </div>
+    );
+};
+// ...existing code...
+// ...existing code...
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './components/LanguageSelector';
+// ...existing code...
+
+function App() {
+  const { t } = useTranslation();
+
+  // ...existing code...
+
+  return (
+    <div className="min-h-screen bg-stone-50 p-6">
+      <header className="max-w-3xl mx-auto mb-6 flex items-center gap-3">
+        <LeafIcon className="w-10 h-10 text-green-600" />
+        <h1 className="text-2xl font-semibold">{t('app.title')}</h1>
+        <LanguageSelector />
+      </header>
+
+      <main className="max-w-3xl mx-auto space-y-6">
+        <FertilizerForm formData={formData} onFormChange={handleFormChange} onSubmit={handleSubmit} isLoading={isLoading} />
+        <RecommendationDisplay recommendations={recommendations} isLoading={isLoading} error={error} />
+      </main>
+    </div>
+  );
+}
+// ...existing code...
+// ...existing code...
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './components/LanguageSelector';
+// ...existing code...
+
+function App() {
+  const { t } = useTranslation();
+
+  // ...existing code...
+
+  return (
+    <div className="min-h-screen bg-stone-50 p-6">
+      <header className="max-w-3xl mx-auto mb-6 flex items-center gap-3">
+        <LeafIcon className="w-10 h-10 text-green-600" />
+        <h1 className="text-2xl font-semibold">{t('app.title')}</h1>
+        <LanguageSelector />
+      </header>
+
+      <main className="max-w-3xl mx-auto space-y-6">
+        <FertilizerForm formData={formData} onFormChange={handleFormChange} onSubmit={handleSubmit} isLoading={isLoading} />
+        <RecommendationDisplay recommendations={recommendations} isLoading={isLoading} error={error} />
+      </main>
+    </div>
+  );
+}
+// ...existing code...
+// ...existing code...
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './components/LanguageSelector';
+// ...existing code...
+
+function App() {
+  const { t } = useTranslation();
+
+  // ...existing code...
+
+  return (
+    <div className="min-h-screen bg-stone-50 p-6">
+      <header className="max-w-3xl mx-auto mb-6 flex items-center gap-3">
+        <LeafIcon className="w-10 h-10 text-green-600" />
+        <h1 className="text-2xl font-semibold">{t('app.title')}</h1>
+        <LanguageSelector />
+      </header>
+
+      <main className="max-w-3xl mx-auto space-y-6">
+        <FertilizerForm formData={formData} onFormChange={handleFormChange} onSubmit={handleSubmit} isLoading={isLoading} />
+        <RecommendationDisplay recommendations={recommendations} isLoading={isLoading} error={error} />
+      </main>
+    </div>
+  );
+}
+// ...existing code...
+// ...existing content...
+{
+// ...existing content...
+{
+  "app": { "title": "Agri-Nourish AI" },
+  "form": { /* ...existing keys... */ },
+  "recommendation": { /* ...existing keys... */ },
+  "analysis": {
+    "uploadLabel": "Upload crop photo",
+    "analyze": "Analyze Image",
+    "detecting": "Detecting…",
+    "noImage": "No image selected",
+    "noResults": "No analysis results yet",
+    "confidence": "Confidence"
+  },
+  "recommendations": {
+    "nitrogen": {
+      "title": "Nitrogen deficiency",
+      "advice": "Symptoms: yellowing leaves and stunted growth. Advice: apply a nitrogen-rich fertilizer such as urea or ammonium nitrate according to soil test recommendations.",
+      "precautions": "Avoid over-application; split applications and follow soil test rates."
+    },
+    "phosphorus": {
+      "title": "Phosphorus deficiency",
+      "advice": "Symptoms: poor root development or purpling. Advice: apply phosphorus fertilizers (e.g., SSP or DAP) at recommended rates and incorporate near roots.",
+      "precautions": "Acidic soils may fix phosphorus; follow soil test guidance."
+    },
+    "fungal": {
+      "title": "Possible fungal infection",
+      "advice": "Symptoms: spots, lesions, or rust. Advice: remove severely affected tissue, improve airflow, and consider a targeted fungicide per local guidance.",
+      "precautions": "Use registered products and follow label instructions."
+    },
+    "healthy": {
+      "title": "Looks healthy",
+      "advice": "No obvious problems detected by the quick analysis. Continue monitoring and follow good nutrient and water management.",
+      "precautions": "This is a heuristic check; consult expert if unsure."
+    },
+    "unknown": {
+      "title": "Unknown issue",
+      "advice": "Image did not match simple heuristics. Consider taking clearer photos (close-up of affected leaves) or consult an expert.",
+      "precautions": "Collect more images and field data for better diagnosis."
+    }
+  }
+}
+  // ...existing content...
+{
+  "app": { "title": "एग्री-न्यूरिश एआई" },
+  "form": { /* ...existing keys... */ },
+  "recommendation": { /* ...existing keys... */ },
+  "analysis": {
+    "uploadLabel": "फसल की फ़ोटो अपलोड करें",
+    "analyze": "छवि विश्लेषण करें",
+    "detecting": "विश्लेषण हो रहा है…",
+    "noImage": "कोई छवि चुनी नहीं गई",
+    "noResults": "अभी कोई विश्लेषण परिणाम नहीं",
+    "confidence": "विश्वास स्तर"
+  },
+  "recommendations": {
+    "nitrogen": {
+      "title": "नाइट्रोजन की कमी",
+      "advice": "लक्षण: पत्तियों का पीला होना और विकास में रुकावट। सलाह: उrea जैसे नाइट्रोजन-समृद्ध उर्वरक का प्रयोग करें, और मिट्टी परीक्षण के अनुसार मात्रा दें।",
+      "precautions": "अति-प्रयोग से बचें; विभाजित बार में दें और मिट्टी परीक्षण के अनुपात का पालन करें।"
+    },
+    "phosphorus": {
+      "title": "फास्फोरस की कमी",
+      "advice": "लक्षण: जड़ों का कमजोर विकास या पर्पल रंग। सलाह: एसएसपी या डीएपी जैसे फास्फोरस उर्वरक का प्रयोग करें और जड़ों के पास मिलाएं।",
+      "precautions": "एसिडिक मिट्टियां फास्फोरस बांध सकती हैं; मिट्टी परीक्षण के अनुसार चलें।"
+    },
+    "fungal": {
+      "title": "संभावित कवक संक्रमण",
+      "advice": "लक्षण: धब्बे, घाव या रस्ट। सलाह: गंभीर प्रभावित हिस्सों को हटाएं, वायु प्रवाह बढ़ाएँ, और स्थानीय मार्गदर्शन के अनुसार लक्षित फंगिसाइड पर विचार करें।",
+      "precautions": "रजिस्टर किए गए उत्पादों का प्रयोग करें और लेबल निर्देशों का पालन करें।"
+    },
+    "healthy": {
+      "title": "प्रतीत होता है स्वस्थ",
+      "advice": "तेज़ विश्लेषण में स्पष्ट समस्या नहीं मिली। निगरानी रखें और पोषक व जल प्रबंधन का पालन करें।",
+      "precautions": "यह एक सरल नियम-आधारित जाँच है; सुनिश्चित न होने पर विशेषज्ञ से परामर्श करें।"
+    },
+    "unknown": {
+      "title": "अज्ञात समस्या",
+      "advice": "छवि सरल नियमों से मेल नहीं खाती। स्पष्ट फोटोज़ लें (प्रभावित पत्तियों के क्लोज़-अप) या विशेषज्ञ से परामर्श करें।",
+      "precautions": "बेहतर निदान के लिए और छवियाँ और क्षेत्र डेटा इकट्ठा करें।"
+    }
+  }
+}
+// ...existing code...
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './components/LanguageSelector';
+import ImageUploader from './components/ImageUploader';
+import CropAnalysisDisplay from './components/CropAnalysisDisplay';
+import type { AnalysisResult } from './services/imageService';
+// ...existing code...
+
+function App() {
+  const { t } = useTranslation();
+  // ...existing state...
+  const [analysis, setAnalysis] = React.useState<AnalysisResult | null>(null);
+  const [previewUrl, setPreviewUrl] = React.useState<string | undefined>(undefined);
+
+  // reuse existing handleFormChange/handleSubmit...
+  // add handler for image analysis:
+  const handleAnalyzed = (res: AnalysisResult | null, preview?: string) => {
+    setAnalysis(res);
+    setPreviewUrl(preview);
+  };
+
+  return (
+    <div className="min-h-screen bg-stone-50 p-6">
+      <header className="max-w-3xl mx-auto mb-6 flex items-center gap-3">
+        <LeafIcon className="w-10 h-10 text-green-600" />
+        <h1 className="text-2xl font-semibold">{t('app.title')}</h1>
+        <LanguageSelector />
+      </header>
+
+      <main className="max-w-3xl mx-auto space-y-6">
+        {/* existing form */}
+        <FertilizerForm formData={formData} onFormChange={handleFormChange} onSubmit={handleSubmit} isLoading={isLoading} />
+
+        {/* image upload + analysis */}
+        <ImageUploader onAnalyzed={handleAnalyzed} />
+        <CropAnalysisDisplay result={analysis} />
+
+        {/* recommendations from text form */}
+        <RecommendationDisplay recommendations={recommendations} isLoading={isLoading} error={error} />
+      </main>
+    </div>
+  );
+}
+// ...existing code...
+  
+  

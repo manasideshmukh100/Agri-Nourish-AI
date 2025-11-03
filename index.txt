@@ -1,0 +1,97 @@
+import './i18n';
+// ...existing code...
+cd 'C:\Users\Prabhakar\.vscode\Agri-Nourish-AI'
+npm install i18next react-i18next
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import en from './locales/en.json';
+import hi from './locales/hi.json';
+
+i18n.use(initReactI18next).init({
+  resources: {
+    en: { translation: en },
+    hi: { translation: hi },
+  },
+  fallbackLng: 'en',
+  lng: 'en',
+  interpolation: { escapeValue: false },
+});
+
+export default i18n;
+{
+  "app": {
+    "title": "Agri-Nourish AI"
+  },
+  "form": {
+    "cropType": "Crop Type",
+    "soilQuality": "Soil Quality",
+    "climate": "Climate",
+    "growthStage": "Growth Stage",
+    "nutrientDeficiencies": "Nutrient Deficiencies (describe)",
+    "cropPlaceholder": "e.g., Maize",
+    "submit": "Get Recommendation",
+    "loading": "Analyzing…"
+  },
+  "recommendation": {
+    "noRecommendations": "No recommendations yet. Fill the form and submit.",
+    "method": "Method",
+    "why": "Why",
+    "precautions": "Precautions"
+  },
+  "error": {
+    "generic": "Failed to fetch recommendations"
+  },
+  "lang": {
+    "select": "Language"
+  }
+}
+{
+  "app": {
+    "title": "एग्री-न्यूरिश एआई"
+  },
+  "form": {
+    "cropType": "फसल का प्रकार",
+    "soilQuality": "मिट्टी की गुणवत्ता",
+    "climate": "जलवायु",
+    "growthStage": "विकास चरण",
+    "nutrientDeficiencies": "पोषक तत्वों की कमी (विवरण)",
+    "cropPlaceholder": "उदा., मक्का",
+    "submit": "अनुशंसा प्राप्त करें",
+    "loading": "विश्लेषण हो रहा है…"
+  },
+  "recommendation": {
+    "noRecommendations": "अभी कोई अनुशंसाएँ नहीं। फ़ॉर्म भरकर सबमिट करें।",
+    "method": "विधि",
+    "why": "क्यों",
+    "precautions": "सावधानियाँ"
+  },
+  "error": {
+    "generic": "अनुशंसाएँ प्राप्त करने में असफल"
+  },
+  "lang": {
+    "select": "भाषा"
+  }
+}
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+const LanguageSelector: React.FC = () => {
+  const { i18n, t } = useTranslation();
+  const change = (e: React.ChangeEvent<HTMLSelectElement>) => i18n.changeLanguage(e.target.value);
+
+  return (
+    <div className="ml-auto">
+      <label className="text-sm mr-2">{t('lang.select')}:</label>
+      <select value={i18n.language} onChange={change} className="border rounded px-2 py-1">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+      </select>
+    </div>
+  );
+};
+
+export default LanguageSelector;
+// ...existing code...
+import './index.css';
+import './i18n';
+// ...existing code...
