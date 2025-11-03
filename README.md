@@ -41,4 +41,120 @@ The goal is to use machine learning and smart analytics to improve yields, optim
 ---
 
 ## 📁 Repository Structure
+Agri-Nourish-AI/
+│
+├── App.tsx # Entry point for UI
+├── README.md # You’re editing this file
+├── index.txt # Description or placeholder file
+│
+└── … (other folders/files as your frontend/backend modules expand)
+
+
+> Note: You can update this section with the actual backend folder structure once you add API, models, and controllers.
+
+---
+
+## 🧭 Getting Started (Setup)
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/manasideshmukh100/Agri-Nourish-AI.git
+cd Agri-Nourish-AI
+
+###2️⃣ Install Dependencies
+npm install
+
+###3️⃣ Configure Environment Variables
+PORT=5000  
+MONGO_URI=<your_mongo_connection_string>  
+JWT_SECRET=<your_jwt_secret>
+
+###4️⃣ Run Development Server
+npm run dev
+
+###📦 Usage & API Endpoints
+
+Note: Adjust according to your API routing setup once backend modules are ready.
+
+###🔐 Authentication (if included)
+
+Register: POST /api/auth/register
+
+Login: POST /api/auth/login
+Response returns JWT token
+
+###🌱 Crop & Farm Data
+
+Create Crop: POST /api/crops
+
+Get All Crops: GET /api/crops
+
+Update Crop: PUT /api/crops/:cropId
+
+Delete Crop: DELETE /api/crops/:cropId
+
+###📋 Task Management (if applicable)
+
+Create Task: POST /api/tasks
+
+Get All Tasks: GET /api/tasks
+
+Update Task: PUT /api/tasks/:taskId
+
+Delete Task: DELETE /api/tasks/:taskId
+
+All protected routes must include header:
+Authorization: Bearer <your_token>
+
+###🌍 Live Deployment
+
+If you’ve deployed your backend or frontend, include the URLs below:
+
+Backend URL: https://<your-backend-url>
+
+Frontend UI: https://<your-frontend-url>
+
+⚠️ Note: On free-tier hosting, initial responses may take a few seconds due to server cold-starts.
+
+###🧪 Testing
+
+You can test endpoints using Postman, Thunder Client, or any REST API tool.
+If you include a test script:
+
+node tests/testApi.js
+
+###🧹 Reset & Clean-Up
+
+To reset your database (if using MongoDB Compass):
+
+Remove collections for users, crops, and tasks
+
+Restart the server and re-register users if needed
+
+###🙏 Acknowledgements
+
+Thanks to everyone (mentors, collaborators) who helped me develop this project.
+This work strengthened my skills in:
+
+Backend/API development
+
+Data modelling & security
+
+AI/ML prototype design
+
+Deployment & full-stack integration
+
+###📬 Contact
+
+👩‍💻 Developer: Manasi Deshmukh
+📧 Email: manasideshmukh500@gmail.com
+
+🔗 LinkedIn:
+###⭐ If you find this project useful, feel free to give it a star!
+Use it as a foundation for smart, sustainable agriculture solutions.
+
+
+---
+
+
 
