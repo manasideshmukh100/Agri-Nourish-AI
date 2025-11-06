@@ -149,7 +149,7 @@ Deployment & full-stack integration
 👩‍💻 Developer: Manasi Deshmukh
 📧 Email: manasideshmukh500@gmail.com
 
-🔗 LinkedIn:
+🔗 LinkedIn:https://www.linkedin.com/in/manasi-deshmukh-18b399385
 ⭐ If you find this project useful, feel free to give it a star!
 Use it as a foundation for smart, sustainable agriculture solutions.
 
